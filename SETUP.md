@@ -22,6 +22,13 @@ Esto instalará todas las dependencias necesarias para ejecutar la aplicación.
 
 ---
 
+## ▶️ Variable de entorno
+
+Cambiar la Ip (no acepta localhost porque es Mobile, no web) en la que está el servidor.
+EJ: API_URL=http://192.168.1.3:5010
+
+---
+
 ## ▶️ Ejecutar el proyecto
 
 Para iniciar la aplicación en modo desarrollo:
