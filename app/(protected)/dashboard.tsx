@@ -5,6 +5,7 @@ import { useAuth } from "@/src/hooks/use-auth";
 import { useSensorDataList } from "@/src/hooks/use-sensor-list";
 import { SensorType } from "@/src/types/sensor-type";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { format } from "date-fns";
 import { LinearGradient } from "expo-linear-gradient";
 import { useCallback, useEffect, useState } from "react";
 import {
@@ -21,8 +22,15 @@ import { LineChart } from "react-native-chart-kit";
 const { width } = Dimensions.get("window");
 
 export default function Dashboard() {
+  const today = new Date();
+  const formatted = format(today, "yyyy-MM-dd");
+
   const { token } = useAuth();
-  const { data, isSuccess, refetch } = useSensorDataList(false, token ?? "");
+  const { data, isSuccess, refetch } = useSensorDataList(
+    formatted,
+    false,
+    token ?? "",
+  );
   const [sensorList, setSensorList] = useState<SensorType[]>([]);
   const [refreshing, setRefreshing] = useState(false);
   const { subscribe, unsubscribe } = useSignalR();
@@ -50,14 +58,20 @@ export default function Dashboard() {
   useEffect(() => {
     // callback que recibirá los datos del evento
     const handleSensorUpdate = (data: SensorType) => {
-      setSensorList((prev) => [...prev, data]);
+      if (data) {
+        const eventDate = new Date(data.Timestamp);
+        const eventFormatted = format(eventDate, "yyyy-MM-dd");
+        if (formatted === eventFormatted) {
+          setSensorList((prev) => [...prev, data]);
+        }
+      }
     };
 
     subscribe<SensorType>("LOCATION_UPDATE_ONE", handleSensorUpdate);
     return () => {
       unsubscribe<SensorType>("LOCATION_UPDATE_ONE", handleSensorUpdate);
     };
-  }, [subscribe, unsubscribe]);
+  }, [subscribe, unsubscribe, formatted]);
 
   const chartFuelData = fuelListMap(sensorList);
   const charSpeedData = speedListMap(sensorList);
@@ -144,7 +158,6 @@ const styles = StyleSheet.create({
   },
   card: {
     backgroundColor: "#0b1628",
-    borderRadius: 10,
     padding: 5,
     marginBottom: 5,
     alignItems: "center",

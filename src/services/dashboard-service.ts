@@ -1,12 +1,16 @@
+import Constants from "expo-constants";
 import { ApiResponseTypeG } from "../types/all-types";
 import { SensorType } from "../types/sensor-type";
 
+const API_URL = Constants.expoConfig?.extra?.API_URL;
+
 export const getSensor = async (
+  date: string,
   showInactive: boolean,
   token: string,
 ): Promise<ApiResponseTypeG<SensorType[]>> => {
   const response = await fetch(
-    `http://192.168.1.3:5010/api/sensor?showInactive=${showInactive}`,
+    `${API_URL}/api/sensor?date=${date}&showInactive=${showInactive}`,
     {
       method: "GET",
       headers: {
