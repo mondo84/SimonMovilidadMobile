@@ -48,3 +48,18 @@ Join our community of developers creating universal apps.
 
 - [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
 - [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+
+## Generar el Bundle Android APK Release. Comando para Git Bash
+
+```bash
+chmod +x gradlew
+./gradlew assembleRelease
+```
+
+## Cambiar el API Key de google Maps Para Android
+
+Despues de crear el .apk ir a IOT-MOBILE/android/app/src/main/AndroidManifest.xml
+y agregar la etiqueta de metada dentro de:
+<application>  
+<meta-data android:name="com.google.android.geo.API_KEY" android:value="tu_api_key_google_maps_for_android"/>
+</application>
