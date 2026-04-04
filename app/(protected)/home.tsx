@@ -99,13 +99,12 @@ const styles = StyleSheet.create({
     marginEnd: "auto",
   },
   card: {
-    backgroundColor: "#1e293b",
+    backgroundColor: "#003279",
     padding: 20,
-    borderRadius: 12,
-    marginBottom: 10,
+    marginBottom: 5,
   },
   text: {
-    color: "#22c55e",
+    color: "#d9d9d9",
     fontSize: 16,
   },
 });

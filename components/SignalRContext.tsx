@@ -1,6 +1,9 @@
 import { SignalRContextType } from "@/src/types/all-types";
 import { HubConnection, HubConnectionBuilder } from "@microsoft/signalr";
+import Constants from "expo-constants";
 import React, { createContext, useContext, useEffect, useRef } from "react";
+
+const API_URL = Constants.expoConfig?.extra?.API_URL;
 
 const SignalRContext = createContext<SignalRContextType>({
   connection: null, // Conexion
@@ -18,7 +21,7 @@ export const SignalRProvider: React.FC<{ children: React.ReactNode }> = ({
 
   useEffect(() => {
     const connection = new HubConnectionBuilder()
-      .withUrl("http://192.168.1.3:5010/ws/alerts")
+      .withUrl(`${API_URL}/ws/alerts`)
       .withAutomaticReconnect()
       .build();
 

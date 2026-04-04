@@ -48,15 +48,14 @@ const styles = StyleSheet.create({
   container: {
     position: "absolute",
     top: 50,
-    left: 2,
-    right: 2,
+    left: 4,
+    right: 4,
     zIndex: 20,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
     backgroundColor: "rgba(15, 23, 42, 0.9)",
     padding: 12,
-    borderRadius: 12,
   },
   left: {
     width: 50,

@@ -31,9 +31,7 @@ const Login = () => {
   const handleLogin = (data: LoginSchema) => {
     mutate(data, {
       onSuccess: (res) => {
-        // console.log("RESPONSE: ", res);
         router.replace("/home"); // No queda en historial de navegacion.
-
         // Guardamos datos en el state Zustand,
         setAuth({ data: res.data, token: res.token });
       },
@@ -59,7 +57,7 @@ const Login = () => {
           <>
             <TextInput
               placeholder="Usuario"
-              placeholderTextColor="#888"
+              placeholderTextColor="#c0c0c0"
               style={styles.input}
               value={field.value}
               onChangeText={(text) => {
@@ -80,8 +78,8 @@ const Login = () => {
         render={({ field: { onChange, value } }) => (
           <>
             <TextInput
-              placeholder="Password"
-              placeholderTextColor="#888"
+              placeholder="Contraseña"
+              placeholderTextColor="#c0c0c0"
               secureTextEntry={!passwordVisible}
               style={styles.input}
               value={value}
@@ -127,7 +125,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 28,
-    color: "#22c55e",
+    color: "#e5e5e5",
     marginBottom: 30,
     textAlign: "center",
   },
@@ -135,7 +133,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#1e293b",
     color: "#fff",
     padding: 14,
-    borderRadius: 10,
     marginBottom: 5,
   },
   toggle: {
@@ -148,13 +145,12 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   button: {
-    backgroundColor: "#22c55e",
+    backgroundColor: "#003279",
     padding: 15,
-    borderRadius: 12,
   },
   buttonText: {
     textAlign: "center",
-    color: "#000",
+    color: "#d9d9d9",
     fontWeight: "bold",
   },
 });
