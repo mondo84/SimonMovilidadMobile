@@ -60,6 +60,6 @@ chmod +x gradlew
 
 Despues de crear el .apk ir a IOT-MOBILE/android/app/src/main/AndroidManifest.xml
 y agregar la etiqueta de metada dentro de:
-<application>  
-<meta-data android:name="com.google.android.geo.API_KEY" android:value="tu_api_key_google_maps_for_android"/>
-</application>
+#application#  
+ #meta-data android:name="com.google.android.geo.API_KEY" android:value="tu_api_key_google_maps_for_android"/#
+#/application
