@@ -63,3 +63,5 @@ y agregar la etiqueta de metada dentro de:
 #application#  
  #meta-data android:name="com.google.android.geo.API_KEY" android:value="tu_api_key_google_maps_for_android"/#
 #/application
+
+## Email: elmondoles@gmail.com
