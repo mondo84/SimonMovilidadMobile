@@ -4,12 +4,13 @@ import { loginSchema, LoginSchema } from "@/src/schemas/login-schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { LinearGradient } from "expo-linear-gradient";
 import { useRouter } from "expo-router";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { StyleSheet, Text, TextInput, TouchableOpacity } from "react-native";
 import { useAuth } from "../../src/hooks/use-auth";
 
 const Login = () => {
+  const inputRef = useRef<TextInput | null>(null);
   const router = useRouter();
   const { setAuth } = useAuth();
   const { mutate, isPending } = useLogin(); // Reack tanstack query.
@@ -41,6 +42,10 @@ const Login = () => {
     });
   };
 
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, []);
+
   return (
     <LinearGradient
       colors={["#020617", "#000000"]} // gradiente top → bottom
@@ -56,6 +61,7 @@ const Login = () => {
         render={({ field }) => (
           <>
             <TextInput
+              ref={inputRef}
               placeholder="Usuario"
               placeholderTextColor="#c0c0c0"
               style={styles.input}
